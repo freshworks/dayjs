@@ -4,6 +4,7 @@ import dayjs from '../../src'
 import '../../src/locale/ru'
 import uk from '../../src/locale/uk'
 import '../../src/locale/zh-cn'
+import '../../src/locale/vi'
 import customParseFormat from '../../src/plugin/customParseFormat'
 import advancedFormat from '../../src/plugin/advancedFormat'
 import localizedFormats from '../../src/plugin/localizedFormat'
@@ -293,6 +294,11 @@ describe('month function locale', () => {
     const input = '08 февр. 2020'
     const format = 'DD MMM YYYY'
     expect(dayjs(input, format, 'ru').valueOf()).toBe(moment(input, format, 'ru').valueOf())
+  })
+  it('MMM (vietnamese)', () => {
+    const input = '01 Th09 2019'
+    const format = 'DD MMM YYYY'
+    expect(dayjs(input, format, 'vi').isValid()).toBe(true)
   })
 })
 
