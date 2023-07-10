@@ -10,6 +10,7 @@ const match1to2 = /\d\d?/ // 0 - 99
 const matchSigned = /[+-]?\d+/ // -inf - inf
 const matchOffset = /[+-]\d\d:?(\d\d)?|Z/ // +00:00 -00:00 +0000 or -0000 +00 or Z
 const matchWord = /\d*[^-_:/,()\s\d]+/ // Word
+const matchWordAndNumber = /\d*[^-_:/,()\s]+/ // Word and Number
 
 let locale = {}
 
@@ -97,7 +98,7 @@ const expressions = {
   }],
   M: [match1to2, addInput('month')],
   MM: [match2, addInput('month')],
-  MMM: [matchWord, function (input) {
+  MMM: [matchWordAndNumber, function (input) {
     const months = getLocalePart('months')
     const monthsShort = getLocalePart('monthsShort')
     const matchIndex = (monthsShort || months.map(_ => _.slice(0, 3))).indexOf(input) + 1
