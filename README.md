@@ -51,6 +51,14 @@ npm install dayjs --save
 
 📚[Installation Guide](https://day.js.org/docs/en/installation/installation)
 
+### Commits
+
+Make sure to run the below script if you are making any changes in this repo.
+
+```javascript
+  npm babel
+```
+
 ### API
 
 It's easy to use Day.js APIs to parse, validate, manipulate, and display dates and times.
