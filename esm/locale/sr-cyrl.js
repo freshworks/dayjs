@@ -17,17 +17,20 @@ var translator = {
     if (number % 10 >= 1 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)) {
       return number % 10 === 1 ? wordKey[0] : wordKey[1];
     }
+
     return wordKey[2];
   },
   relativeTimeFormatter: function relativeTimeFormatter(number, withoutSuffix, key, isFuture) {
     var wordKey = translator.words[key];
+
     if (key.length === 1) {
       // Nominativ
       if (key === 'y' && withoutSuffix) return 'једна година';
       return isFuture || withoutSuffix ? wordKey[0] : wordKey[1];
     }
-    var word = translator.correctGrammarCase(number, wordKey);
-    // Nominativ
+
+    var word = translator.correctGrammarCase(number, wordKey); // Nominativ
+
     if (key === 'yy' && withoutSuffix && word === '%d годину') return number + " \u0433\u043E\u0434\u0438\u043D\u0430";
     return word.replace('%d', number);
   }

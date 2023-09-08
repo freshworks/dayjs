@@ -1,5 +1,6 @@
 export default (function (o, c) {
   var proto = c.prototype;
+
   proto.toObject = function () {
     return {
       years: this.$y,

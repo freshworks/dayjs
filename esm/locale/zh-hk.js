@@ -11,6 +11,7 @@ var locale = {
     switch (period) {
       case 'W':
         return number + "\u9031";
+
       default:
         return number + "\u65E5";
     }

@@ -1,15 +1,18 @@
 // Lithuanian [lt]
 import dayjs from '../index';
 var monthFormat = 'sausio_vasario_kovo_balandžio_gegužės_birželio_liepos_rugpjūčio_rugsėjo_spalio_lapkričio_gruodžio'.split('_');
-var monthStandalone = 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_');
-// eslint-disable-next-line no-useless-escape
+var monthStandalone = 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_'); // eslint-disable-next-line no-useless-escape
+
 var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?|MMMM?(\[[^\[\]]*\]|\s)+D[oD]?/;
+
 var months = function months(dayjsInstance, format) {
   if (MONTHS_IN_FORMAT.test(format)) {
     return monthFormat[dayjsInstance.month()];
   }
+
   return monthStandalone[dayjsInstance.month()];
 };
+
 months.s = monthStandalone;
 months.f = monthFormat;
 var locale = {

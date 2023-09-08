@@ -2,9 +2,11 @@ import { t } from '../localizedFormat/utils';
 export default (function (o, c, dayjs) {
   // locale needed later
   var proto = c.prototype;
+
   var getLocalePart = function getLocalePart(part) {
     return part && (part.indexOf ? part : part.s);
   };
+
   var getShort = function getShort(ins, target, full, num, localeOrder) {
     var locale = ins.name ? ins : ins.$locale();
     var targetLocale = getLocalePart(locale[target]);
@@ -18,14 +20,18 @@ export default (function (o, c, dayjs) {
       return result[(index + (weekStart || 0)) % 7];
     });
   };
+
   var getDayjsLocaleObject = function getDayjsLocaleObject() {
     return dayjs.Ls[dayjs.locale()];
   };
+
   var getLongDateFormat = function getLongDateFormat(l, format) {
     return l.formats[format] || t(l.formats[format.toUpperCase()]);
   };
+
   var localeData = function localeData() {
     var _this = this;
+
     return {
       months: function months(instance) {
         return instance ? instance.format('MMMM') : getShort(_this, 'months');
@@ -52,9 +58,11 @@ export default (function (o, c, dayjs) {
       ordinal: this.$locale().ordinal
     };
   };
+
   proto.localeData = function () {
     return localeData.bind(this)();
   };
+
   dayjs.localeData = function () {
     var localeObject = getDayjsLocaleObject();
     return {
@@ -83,18 +91,23 @@ export default (function (o, c, dayjs) {
       ordinal: localeObject.ordinal
     };
   };
+
   dayjs.months = function () {
     return getShort(getDayjsLocaleObject(), 'months');
   };
+
   dayjs.monthsShort = function () {
     return getShort(getDayjsLocaleObject(), 'monthsShort', 'months', 3);
   };
+
   dayjs.weekdays = function (localeOrder) {
     return getShort(getDayjsLocaleObject(), 'weekdays', null, null, localeOrder);
   };
+
   dayjs.weekdaysShort = function (localeOrder) {
     return getShort(getDayjsLocaleObject(), 'weekdaysShort', 'weekdays', 3, localeOrder);
   };
+
   dayjs.weekdaysMin = function (localeOrder) {
     return getShort(getDayjsLocaleObject(), 'weekdaysMin', 'weekdays', 2, localeOrder);
   };
