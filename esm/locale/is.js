@@ -13,7 +13,6 @@ var texts = {
   y: ['ár', 'ár', 'ári'],
   yy: ['ár', 'ár', 'árum']
 };
-
 function resolveTemplate(key, number, isFuture, withoutSuffix) {
   var suffixIndex = isFuture ? 1 : 2;
   var index = withoutSuffix ? 0 : suffixIndex;
@@ -23,12 +22,10 @@ function resolveTemplate(key, number, isFuture, withoutSuffix) {
   var text = unitText[index];
   return key.length === 1 ? text : "%d " + text;
 }
-
 function relativeTimeFormatter(number, withoutSuffix, key, isFuture) {
   var template = resolveTemplate(key, number, isFuture, withoutSuffix);
   return template.replace('%d', number);
 }
-
 var locale = {
   name: 'is',
   weekdays: 'sunnudagur_mánudagur_þriðjudagur_miðvikudagur_fimmtudagur_föstudagur_laugardagur'.split('_'),

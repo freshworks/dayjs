@@ -56,8 +56,7 @@ var locale = {
     LLLL: 'dddd, D MMMM YYYY খ্রিস্টাব্দ, A h:mm সময়'
   },
   meridiem: function meridiem(hour) {
-    return (
-      /* eslint-disable no-nested-ternary */
+    return (/* eslint-disable no-nested-ternary */
       hour < 4 ? 'রাত' : hour < 6 ? 'ভোর' : hour < 12 ? 'সকাল' : hour < 15 ? 'দুপুর' : hour < 18 ? 'বিকাল' : hour < 20 ? 'সন্ধ্যা' : 'রাত'
     );
   },

@@ -18,12 +18,10 @@ var texts = {
   yy: '%d שנים',
   yy2: 'שנתיים'
 };
-
 function relativeTimeFormatter(number, withoutSuffix, key) {
   var text = texts[key + (number === 2 ? '2' : '')] || texts[key];
   return text.replace('%d', number);
 }
-
 var locale = {
   name: 'he',
   weekdays: 'ראשון_שני_שלישי_רביעי_חמישי_שישי_שבת'.split('_'),

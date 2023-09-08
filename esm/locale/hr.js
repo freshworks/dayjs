@@ -3,15 +3,12 @@ import dayjs from '../index';
 var monthFormat = 'siječnja_veljače_ožujka_travnja_svibnja_lipnja_srpnja_kolovoza_rujna_listopada_studenoga_prosinca'.split('_');
 var monthStandalone = 'siječanj_veljača_ožujak_travanj_svibanj_lipanj_srpanj_kolovoz_rujan_listopad_studeni_prosinac'.split('_');
 var MONTHS_IN_FORMAT = /D[oD]?(\[[^[\]]*\]|\s)+MMMM?/;
-
 var months = function months(dayjsInstance, format) {
   if (MONTHS_IN_FORMAT.test(format)) {
     return monthFormat[dayjsInstance.month()];
   }
-
   return monthStandalone[dayjsInstance.month()];
 };
-
 months.s = monthStandalone;
 months.f = monthFormat;
 var locale = {

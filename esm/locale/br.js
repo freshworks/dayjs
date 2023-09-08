@@ -1,14 +1,11 @@
 // Breton [br]
 import dayjs from '../index';
-
 function lastNumber(number) {
   if (number > 9) {
     return lastNumber(number % 10);
   }
-
   return number;
 }
-
 function softMutation(text) {
   var mutationTable = {
     m: 'v',
@@ -17,15 +14,12 @@ function softMutation(text) {
   };
   return mutationTable[text.charAt(0)] + text.substring(1);
 }
-
 function mutation(text, number) {
   if (number === 2) {
     return softMutation(text);
   }
-
   return text;
 }
-
 function relativeTimeWithMutation(number, withoutSuffix, key) {
   var format = {
     mm: 'munutenn',
@@ -34,7 +28,6 @@ function relativeTimeWithMutation(number, withoutSuffix, key) {
   };
   return number + " " + mutation(format[key], number);
 }
-
 function specialMutationForYears(number) {
   /* istanbul ignore next line */
   switch (lastNumber(number)) {
@@ -44,12 +37,10 @@ function specialMutationForYears(number) {
     case 5:
     case 9:
       return number + " bloaz";
-
     default:
       return number + " vloaz";
   }
 }
-
 var locale = {
   name: 'br',
   weekdays: 'Sul_Lun_Meurzh_Mercʼher_Yaou_Gwener_Sadorn'.split('_'),
@@ -87,7 +78,7 @@ var locale = {
   meridiem: function meridiem(hour) {
     return hour < 12 ? 'a.m.' : 'g.m.';
   } // a-raok merenn | goude merenn
-
 };
+
 dayjs.locale(locale, null, true);
 export default locale;

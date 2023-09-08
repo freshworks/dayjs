@@ -1,6 +1,5 @@
 // Finnish [fi]
 import dayjs from '../index';
-
 function relativeTimeFormatter(number, withoutSuffix, key, isFuture) {
   var past = {
     s: 'muutama sekunti',
@@ -32,14 +31,11 @@ function relativeTimeFormatter(number, withoutSuffix, key, isFuture) {
   };
   var words = isFuture && !withoutSuffix ? future : past;
   var result = words[key];
-
   if (number < 10) {
     return result.replace('%d', words.numbers[number]);
   }
-
   return result.replace('%d', number);
 }
-
 var locale = {
   name: 'fi',
   // Finnish

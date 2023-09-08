@@ -13,17 +13,13 @@ var texts = {
   y: ['ein Jahr', 'einem Jahr'],
   yy: ['%d Jahre', '%d Jahren']
 };
-
 function relativeTimeFormatter(number, withoutSuffix, key) {
   var l = texts[key];
-
   if (Array.isArray(l)) {
     l = l[withoutSuffix ? 0 : 1];
   }
-
   return l.replace('%d', number);
 }
-
 var locale = {
   name: 'de-ch',
   weekdays: 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),

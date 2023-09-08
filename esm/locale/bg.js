@@ -10,13 +10,10 @@ var locale = {
   weekStart: 1,
   ordinal: function ordinal(n) {
     var last2Digits = n % 100;
-
     if (last2Digits > 10 && last2Digits < 20) {
       return n + "-\u0442\u0438";
     }
-
     var lastDigit = n % 10;
-
     if (lastDigit === 1) {
       return n + "-\u0432\u0438";
     } else if (lastDigit === 2) {
@@ -24,7 +21,6 @@ var locale = {
     } else if (lastDigit === 7 || lastDigit === 8) {
       return n + "-\u043C\u0438";
     }
-
     return n + "-\u0442\u0438";
   },
   formats: {

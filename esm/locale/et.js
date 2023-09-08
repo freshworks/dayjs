@@ -1,6 +1,5 @@
 // Estonian [et]
 import dayjs from '../index';
-
 function relativeTimeWithTense(number, withoutSuffix, key, isFuture) {
   var format = {
     s: ['mõne sekundi', 'mõni sekund', 'paar sekundit'],
@@ -14,14 +13,11 @@ function relativeTimeWithTense(number, withoutSuffix, key, isFuture) {
     y: ['ühe aasta', 'aasta', 'üks aasta'],
     yy: ['%d aasta', '%d aastat']
   };
-
   if (withoutSuffix) {
     return (format[key][2] ? format[key][2] : format[key][1]).replace('%d', number);
   }
-
   return (isFuture ? format[key][0] : format[key][1]).replace('%d', number);
 }
-
 var locale = {
   name: 'et',
   // Estonian

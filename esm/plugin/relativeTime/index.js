@@ -18,7 +18,6 @@ export default (function (o, c, d) {
     yy: '%d years'
   };
   d.en.relativeTime = relObj;
-
   proto.fromToBase = function (input, withoutSuffix, instance, isFrom, postFormat) {
     var loc = instance.$locale().relativeTime || relObj;
     var T = o.thresholds || [{
@@ -64,66 +63,49 @@ export default (function (o, c, d) {
     var result;
     var out;
     var isFuture;
-
     for (var i = 0; i < Tl; i += 1) {
       var t = T[i];
-
       if (t.d) {
         result = isFrom ? d(input).diff(instance, t.d, true) : instance.diff(input, t.d, true);
       }
-
       var abs = (o.rounding || Math.round)(Math.abs(result));
       isFuture = result > 0;
-
       if (abs <= t.r || !t.r) {
         if (abs <= 1 && i > 0) t = T[i - 1]; // 1 minutes -> a minute, 0 seconds -> 0 second
-
         var format = loc[t.l];
-
         if (postFormat) {
           abs = postFormat("" + abs);
         }
-
         if (typeof format === 'string') {
           out = format.replace('%d', abs);
         } else {
           out = format(abs, withoutSuffix, t.l, isFuture);
         }
-
         break;
       }
     }
-
     if (withoutSuffix) return out;
     var pastOrFuture = isFuture ? loc.future : loc.past;
-
     if (typeof pastOrFuture === 'function') {
       return pastOrFuture(out);
     }
-
     return pastOrFuture.replace('%s', out);
   };
-
   function fromTo(input, withoutSuffix, instance, isFrom) {
     return proto.fromToBase(input, withoutSuffix, instance, isFrom);
   }
-
   proto.to = function (input, withoutSuffix) {
     return fromTo(input, withoutSuffix, this, true);
   };
-
   proto.from = function (input, withoutSuffix) {
     return fromTo(input, withoutSuffix, this);
   };
-
   var makeNow = function makeNow(thisDay) {
     return thisDay.$u ? d.utc() : d();
   };
-
   proto.toNow = function (withoutSuffix) {
     return this.to(makeNow(this), withoutSuffix);
   };
-
   proto.fromNow = function (withoutSuffix) {
     return this.from(makeNow(this), withoutSuffix);
   };
