@@ -11,7 +11,6 @@ var locale = {
     switch (period) {
       case 'W':
         return number + "\u9031";
-
       default:
         return number + "\u65E5";
     }
@@ -43,9 +42,19 @@ var locale = {
     y: '1 年',
     yy: '%d 年'
   },
+  meridiemHour: function meridiemHour(hour, meridiem) {
+    if (hour === 12) {
+      hour = 0;
+    }
+    if (meridiem.indexOf('中午') > -1) {
+      return hour >= 11 ? hour : hour + 12;
+    } else if (meridiem.indexOf('下午') > -1 || meridiem.indexOf('晚上') > -1) {
+      return hour + 12;
+    }
+    return hour;
+  },
   meridiem: function meridiem(hour, minute) {
     var hm = hour * 100 + minute;
-
     if (hm < 600) {
       return '凌晨';
     } else if (hm < 900) {
@@ -57,7 +66,6 @@ var locale = {
     } else if (hm < 1800) {
       return '下午';
     }
-
     return '晚上';
   }
 };
